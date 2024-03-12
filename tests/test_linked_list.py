@@ -114,3 +114,12 @@ class TestLinkedList(unittest.TestCase):
         self.assertEqual(self.linked_list.get_previous(node2), node1)
         self.assertIsNone(self.linked_list.get_previous(node1))
         self.assertEqual(self.linked_list.get_previous(node4), node3)
+
+    def test_linked_list_is_cyclic(self):
+        node1 = self.linked_list.insert(5)
+        node2 = self.linked_list.insert(6)
+        node3 = self.linked_list.insert(7)
+        node4 = self.linked_list.insert(8)
+        node3.next = node2
+
+        self.assertEqual(self.linked_list.is_cyclic(), True)

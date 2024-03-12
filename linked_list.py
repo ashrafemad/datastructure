@@ -74,3 +74,18 @@ class LinkedList:
             nodes_data_list.append(current_node.data)
             current_node = current_node.next
         return nodes_data_list
+
+    def is_cyclic(self):
+        current_node = self.head
+        if self.tail.next is not None:
+            return True
+        while current_node:
+            next_node = current_node.next
+            passed_nodes = []
+            while next_node:
+                if next_node == current_node or next_node in passed_nodes:
+                    return True
+                passed_nodes.append(next_node)
+                next_node = next_node.next
+            current_node = current_node.next
+        return False
